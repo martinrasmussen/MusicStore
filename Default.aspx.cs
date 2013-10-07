@@ -15,10 +15,11 @@ public partial class _Default : System.Web.UI.Page
         albumsList.Add("One Direction");
         albumsList.Add("Big Fat Snake");
 
-        //Image image = new Image();
-        //image.ImageUrl = 
+        
         foreach (string album in albumsList)
         {
+            Image image = new Image();
+            image.ImageUrl = "~/resources/artwork/HotFuss.jpg";
             //Initialize a row for the table
             TableRow tblRow = new TableRow();
 
@@ -30,13 +31,13 @@ public partial class _Default : System.Web.UI.Page
             //Add data to the cell here
             tblCell1.Text = album.ToString();
             tblCell2.Text = album.ToString();
-           // tblCell3.Controls.Add(image);
+            tblCell3.Controls.Add(image);
             
 
             //Add the cell to the row
             tblRow.Cells.Add(tblCell1);
             tblRow.Cells.Add(tblCell2);
-           // tblRow.Cells.Add(tblCell3);
+            tblRow.Cells.Add(tblCell3);
 
             //Add the row to the table
             tblAlbums.Rows.Add(tblRow);
