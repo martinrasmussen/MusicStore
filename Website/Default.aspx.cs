@@ -4,12 +4,13 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using DataAccessLayer;
 
-public partial class _Default : System.Web.UI.Page
+namespace Website
 {
-    protected void Page_Load(object sender, EventArgs e)
+    public partial class Default : System.Web.UI.Page
     {
+        protected void Page_Load(object sender, EventArgs e)
+        {
         List<String> albumsList = new List<string>();
         albumsList.Add("Hello Kitty");
         albumsList.Add("GoGoGo");
@@ -41,18 +42,6 @@ public partial class _Default : System.Web.UI.Page
 
             //Add the row to the table
             tblAlbums.Rows.Add(tblRow);
-
         }
-        
-        
-        
-
-        
-
-        
-
-
-
-
     }
 }

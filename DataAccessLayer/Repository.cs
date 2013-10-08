@@ -53,8 +53,6 @@ namespace DataAccessLayer
                     var album = new Album(artistName, albumName, releaseYear, genre, albumArtwork);
                     return album;
                 }
- data 
-
         }
     }
 }
