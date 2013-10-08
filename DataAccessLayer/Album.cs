@@ -3,7 +3,7 @@ using System.Web.UI.WebControls;
 
 namespace DataAccessLayer
 {
-    public class Album : IEntity
+    public class Album
     {
         public string ArtistName { get; set; }
         public string AlbumName { get; set; }

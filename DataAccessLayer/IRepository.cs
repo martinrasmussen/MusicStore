@@ -2,11 +2,11 @@
 
 namespace DataAccessLayer
 {
-    internal interface IRepository<IEntity>
+    internal interface IRepository<T>
     {
-        void Insert(IEntity entity);
-        void Delete(IEntity entity);
-        IQueryable<IEntity> GetAll();
-        IEntity GetById(int id);
+        void Insert(T entity);
+        void Delete(T entity);
+        IQueryable<T> GetAll();
+        T GetById(int id);
     }
 }

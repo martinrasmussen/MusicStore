@@ -8,7 +8,7 @@ using System.Web.UI.WebControls;
 
 namespace DataAccessLayer
 {
-    public class Repository<Album> : IRepository<Album>
+    public class Repository : IRepository<Album>
     {
         // @"Data Source=.\sqlexpress;Initial Catalog=Northwind;Integrated Security=True";
         private readonly string strConnection;
@@ -52,14 +52,8 @@ namespace DataAccessLayer
 
                     var album = new Album(artistName, albumName, releaseYear, genre, albumArtwork);
                     return album;
-
                 }
-                finally
-                {
-                    connection.Close();
-                }
-
-                //use data 
+ data 
 
         }
     }
