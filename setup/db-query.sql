@@ -1,6 +1,6 @@
 USE [master]
 GO
-/****** Object:  Database [MusicStore]    Script Date: 10/7/2013 09:52:23 ******/
+/****** Object:  Database [MusicStore]    Script Date: 10/8/2013 11:08:11 ******/
 CREATE DATABASE [MusicStore]
  CONTAINMENT = NONE
  ON  PRIMARY 
@@ -75,7 +75,7 @@ ALTER DATABASE [MusicStore] SET TARGET_RECOVERY_TIME = 0 SECONDS
 GO
 USE [MusicStore]
 GO
-/****** Object:  Table [dbo].[Album]    Script Date: 10/7/2013 09:52:23 ******/
+/****** Object:  Table [dbo].[Album]    Script Date: 10/8/2013 11:08:11 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -87,6 +87,7 @@ CREATE TABLE [dbo].[Album](
 	[genre] [nvarchar](50) NOT NULL,
 	[artistID] [int] NOT NULL,
 	[albumArtwork] [nvarchar](50) NULL,
+	[price] [decimal](8, 2) NULL,
  CONSTRAINT [PK_Album] PRIMARY KEY CLUSTERED 
 (
 	[ID] ASC
@@ -94,7 +95,7 @@ CREATE TABLE [dbo].[Album](
 ) ON [PRIMARY]
 
 GO
-/****** Object:  Table [dbo].[Artist]    Script Date: 10/7/2013 09:52:23 ******/
+/****** Object:  Table [dbo].[Artist]    Script Date: 10/8/2013 11:08:11 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -109,7 +110,7 @@ CREATE TABLE [dbo].[Artist](
 ) ON [PRIMARY]
 
 GO
-/****** Object:  Table [dbo].[Tracklist]    Script Date: 10/7/2013 09:52:23 ******/
+/****** Object:  Table [dbo].[Tracklist]    Script Date: 10/8/2013 11:08:11 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -122,19 +123,19 @@ GO
 SET IDENTITY_INSERT [dbo].[Album] ON 
 
 GO
-INSERT [dbo].[Album] ([ID], [albumTitle], [yearOfRelease], [genre], [artistID], [albumArtwork]) VALUES (1, N'Piano Man', 1973, N'Rock', 1, N'PianoMan.jpg')
+INSERT [dbo].[Album] ([ID], [albumTitle], [yearOfRelease], [genre], [artistID], [albumArtwork], [price]) VALUES (1, N'Piano Man', 1973, N'Rock', 1, N'PianoMan.jpg', CAST(89.99 AS Decimal(8, 2)))
 GO
-INSERT [dbo].[Album] ([ID], [albumTitle], [yearOfRelease], [genre], [artistID], [albumArtwork]) VALUES (2, N'52nd Street', 1978, N'Rock', 1, N'52ndStreet.jpg')
+INSERT [dbo].[Album] ([ID], [albumTitle], [yearOfRelease], [genre], [artistID], [albumArtwork], [price]) VALUES (2, N'52nd Street', 1978, N'Rock', 1, N'52ndStreet.jpg', CAST(149.99 AS Decimal(8, 2)))
 GO
-INSERT [dbo].[Album] ([ID], [albumTitle], [yearOfRelease], [genre], [artistID], [albumArtwork]) VALUES (3, N'Turnstiles', 1976, N'Rock', 1, N'Turnstiles.jpg')
+INSERT [dbo].[Album] ([ID], [albumTitle], [yearOfRelease], [genre], [artistID], [albumArtwork], [price]) VALUES (3, N'Turnstiles', 1976, N'Rock', 1, N'Turnstiles.jpg', CAST(89.99 AS Decimal(8, 2)))
 GO
-INSERT [dbo].[Album] ([ID], [albumTitle], [yearOfRelease], [genre], [artistID], [albumArtwork]) VALUES (4, N'A Rush of Blood to the Head', 2002, N'Alternative', 2, N'ARushofBloodtotheHead.jpg')
+INSERT [dbo].[Album] ([ID], [albumTitle], [yearOfRelease], [genre], [artistID], [albumArtwork], [price]) VALUES (4, N'A Rush of Blood to the Head', 2002, N'Alternative', 2, N'ARushofBloodtotheHead.jpg', CAST(89.99 AS Decimal(8, 2)))
 GO
-INSERT [dbo].[Album] ([ID], [albumTitle], [yearOfRelease], [genre], [artistID], [albumArtwork]) VALUES (5, N'Viva la Vida or Death to All His Friends', 2008, N'Alternative', 2, N'VivalaVidaorDeathandAllHisFriends.jpg')
+INSERT [dbo].[Album] ([ID], [albumTitle], [yearOfRelease], [genre], [artistID], [albumArtwork], [price]) VALUES (5, N'Viva la Vida or Death to All His Friends', 2008, N'Alternative', 2, N'VivalaVidaorDeathandAllHisFriends.jpg', CAST(44.99 AS Decimal(8, 2)))
 GO
-INSERT [dbo].[Album] ([ID], [albumTitle], [yearOfRelease], [genre], [artistID], [albumArtwork]) VALUES (7, N'Sam''s Town', 2006, N'Rock', 3, N'SamsTown.jpg')
+INSERT [dbo].[Album] ([ID], [albumTitle], [yearOfRelease], [genre], [artistID], [albumArtwork], [price]) VALUES (7, N'Sam''s Town', 2006, N'Rock', 3, N'SamsTown.jpg', CAST(94.99 AS Decimal(8, 2)))
 GO
-INSERT [dbo].[Album] ([ID], [albumTitle], [yearOfRelease], [genre], [artistID], [albumArtwork]) VALUES (8, N'Hot Fuss', 2004, N'Alternative', 3, N'HotFuss.jpg')
+INSERT [dbo].[Album] ([ID], [albumTitle], [yearOfRelease], [genre], [artistID], [albumArtwork], [price]) VALUES (8, N'Hot Fuss', 2004, N'Alternative', 3, N'HotFuss.jpg', CAST(44.99 AS Decimal(8, 2)))
 GO
 SET IDENTITY_INSERT [dbo].[Album] OFF
 GO
