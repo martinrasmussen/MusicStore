@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using DataAccessLayer;
 
 public partial class _Default : System.Web.UI.Page
 {
@@ -31,8 +32,7 @@ public partial class _Default : System.Web.UI.Page
             //Add data to the cell here
             tblCell1.Text = album.ToString();
             tblCell2.Text = album.ToString();
-            tblCell3.Controls.Add(image);
-            
+            tblCell3.Controls.Add(image);            
 
             //Add the cell to the row
             tblRow.Cells.Add(tblCell1);
