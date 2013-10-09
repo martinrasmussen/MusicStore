@@ -22,29 +22,25 @@ namespace Website
         // Takes care [of what]?
         protected void Page_Init(object sender, EventArgs e)
         {
-            // Checks if it is [what]?
-            if (!IsPostBack)
-            {
                 // Initialize the ...
                 repo = new Repository(); // Data access layer // But it shouldn't do that every time.
                 albumsList = repo.GetAll(); // Get all albums from the DB // But it shouldn't do that every time.
-                cart = new Dictionary<Album, int>(); // Create an empty cart.
-            }
+            
         }
 
         // Takes care of [what?]
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (IsPostBack){
+            
                 // Create view state item for the shopping cart if it's empty
-                if (ViewState["albumsList"] == null)
+                if (ViewState["cart"] == null)
                 {
-                    ViewState["albumsList"] = repo.GetAll();
                     ViewState["cart"] = new Dictionary<Album, int>();
                 }
-                cart = (Dictionary<Album, int>)ViewState["cart"];
-                albumsList = (List<Album>)ViewState["cartList"];
-            }
+                
+                cart = (Dictionary<Album, int>)ViewState["cart"]; ; // Create an empty cart.
+
+            
 
             // Populate the page with a table full of albums
             foreach (Album album in albumsList)
@@ -92,7 +88,15 @@ namespace Website
         {
             // Copy shopping cart to view state
             ViewState["cart"] = cart;
-            ViewState["albumsList"] = albumsList;
+            decimal price = 0;
+            foreach (var album in cart)
+            {
+                lblCart.Text += album.Key.AlbumName + " " + album.Key.Price + "<br/>";
+
+                //The total price of the shopping cart @TODO
+                lblCartPrice.Text = Convert.ToString(price += 50);
+            }
+            
         }
 
         // Click listener for the Add function

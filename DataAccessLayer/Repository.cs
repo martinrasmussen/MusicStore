@@ -13,7 +13,7 @@ namespace DataAccessLayer
     {
         // ;
         private readonly string strConnection =
-            @"Data Source=.\sqlexpress;Initial Catalog=MusicStore;Integrated Security=True";
+            @"Data Source=MACCCDB\SQLEXPRESS;Initial Catalog=MusicStore;Integrated Security=True";
 
         
         public void Insert(Album entity)
