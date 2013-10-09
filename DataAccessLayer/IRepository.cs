@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace DataAccessLayer
 {
@@ -6,7 +7,7 @@ namespace DataAccessLayer
     {
         void Insert(T entity);
         void Delete(T entity);
-        IQueryable<T> GetAll();
+        List<T> GetAll();
         T GetById(int id);
     }
 }

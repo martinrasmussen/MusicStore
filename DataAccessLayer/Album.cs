@@ -3,6 +3,7 @@ using System.Web.UI.WebControls;
 
 namespace DataAccessLayer
 {
+    [Serializable] // It's serializable so we can save it to session state.
     public class Album
     {
         public string ArtistName { get; set; }
@@ -12,12 +13,12 @@ namespace DataAccessLayer
         public string AlbumArtwork { get; set; }
         public decimal Price { get; set; }
 
-        public Album(string artistName, string albumName, Int16 releaseYear, string genre, string albumArtwork)
+        public Album(string albumName, string albumArtwork)
         {
-            this.ArtistName = artistName;
+//            this.ArtistName = artistName;
             this.AlbumName = albumName;
-            this.ReleaseYear = releaseYear;
-            this.Genre = genre;
+//            this.ReleaseYear = releaseYear;
+//            this.Genre = genre;
             this.AlbumArtwork = albumArtwork;
         }
     }
