@@ -1,6 +1,6 @@
 USE [master]
 GO
-/****** Object:  Database [MusicStore]    Script Date: 10/8/2013 11:08:11 ******/
+/****** Object:  Database [MusicStore]    Script Date: 10/10/2013 09:51:12 ******/
 CREATE DATABASE [MusicStore]
  CONTAINMENT = NONE
  ON  PRIMARY 
@@ -75,7 +75,7 @@ ALTER DATABASE [MusicStore] SET TARGET_RECOVERY_TIME = 0 SECONDS
 GO
 USE [MusicStore]
 GO
-/****** Object:  Table [dbo].[Album]    Script Date: 10/8/2013 11:08:11 ******/
+/****** Object:  Table [dbo].[Album]    Script Date: 10/10/2013 09:51:12 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -83,8 +83,8 @@ GO
 CREATE TABLE [dbo].[Album](
 	[ID] [int] IDENTITY(1,1) NOT NULL,
 	[albumTitle] [nvarchar](50) NOT NULL,
-	[yearOfRelease] [smallint] NOT NULL,
-	[genre] [nvarchar](50) NOT NULL,
+	[releaseYear] [smallint] NOT NULL,
+	[genreID] [int] NOT NULL,
 	[artistID] [int] NOT NULL,
 	[albumArtwork] [nvarchar](50) NULL,
 	[price] [decimal](8, 2) NULL,
@@ -95,7 +95,7 @@ CREATE TABLE [dbo].[Album](
 ) ON [PRIMARY]
 
 GO
-/****** Object:  Table [dbo].[Artist]    Script Date: 10/8/2013 11:08:11 ******/
+/****** Object:  Table [dbo].[Artist]    Script Date: 10/10/2013 09:51:13 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -110,7 +110,22 @@ CREATE TABLE [dbo].[Artist](
 ) ON [PRIMARY]
 
 GO
-/****** Object:  Table [dbo].[Tracklist]    Script Date: 10/8/2013 11:08:11 ******/
+/****** Object:  Table [dbo].[Genre]    Script Date: 10/10/2013 09:51:13 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Genre](
+	[ID] [int] IDENTITY(1,1) NOT NULL,
+	[genreName] [nvarchar](25) NOT NULL,
+ CONSTRAINT [PK_Genre] PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+/****** Object:  Table [dbo].[Tracklist]    Script Date: 10/10/2013 09:51:13 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -123,19 +138,19 @@ GO
 SET IDENTITY_INSERT [dbo].[Album] ON 
 
 GO
-INSERT [dbo].[Album] ([ID], [albumTitle], [yearOfRelease], [genre], [artistID], [albumArtwork], [price]) VALUES (1, N'Piano Man', 1973, N'Rock', 1, N'PianoMan.jpg', CAST(89.99 AS Decimal(8, 2)))
+INSERT [dbo].[Album] ([ID], [albumTitle], [releaseYear], [genreID], [artistID], [albumArtwork], [price]) VALUES (1, N'Piano Man', 1973, 1, 1, N'PianoMan.jpg', CAST(89.99 AS Decimal(8, 2)))
 GO
-INSERT [dbo].[Album] ([ID], [albumTitle], [yearOfRelease], [genre], [artistID], [albumArtwork], [price]) VALUES (2, N'52nd Street', 1978, N'Rock', 1, N'52ndStreet.jpg', CAST(149.99 AS Decimal(8, 2)))
+INSERT [dbo].[Album] ([ID], [albumTitle], [releaseYear], [genreID], [artistID], [albumArtwork], [price]) VALUES (2, N'52nd Street', 1978, 1, 1, N'52ndStreet.jpg', CAST(149.99 AS Decimal(8, 2)))
 GO
-INSERT [dbo].[Album] ([ID], [albumTitle], [yearOfRelease], [genre], [artistID], [albumArtwork], [price]) VALUES (3, N'Turnstiles', 1976, N'Rock', 1, N'Turnstiles.jpg', CAST(89.99 AS Decimal(8, 2)))
+INSERT [dbo].[Album] ([ID], [albumTitle], [releaseYear], [genreID], [artistID], [albumArtwork], [price]) VALUES (3, N'Turnstiles', 1976, 1, 1, N'Turnstiles.jpg', CAST(89.99 AS Decimal(8, 2)))
 GO
-INSERT [dbo].[Album] ([ID], [albumTitle], [yearOfRelease], [genre], [artistID], [albumArtwork], [price]) VALUES (4, N'A Rush of Blood to the Head', 2002, N'Alternative', 2, N'ARushofBloodtotheHead.jpg', CAST(89.99 AS Decimal(8, 2)))
+INSERT [dbo].[Album] ([ID], [albumTitle], [releaseYear], [genreID], [artistID], [albumArtwork], [price]) VALUES (4, N'A Rush of Blood to the Head', 2002, 2, 2, N'ARushofBloodtotheHead.jpg', CAST(89.99 AS Decimal(8, 2)))
 GO
-INSERT [dbo].[Album] ([ID], [albumTitle], [yearOfRelease], [genre], [artistID], [albumArtwork], [price]) VALUES (5, N'Viva la Vida or Death to All His Friends', 2008, N'Alternative', 2, N'VivalaVidaorDeathandAllHisFriends.jpg', CAST(44.99 AS Decimal(8, 2)))
+INSERT [dbo].[Album] ([ID], [albumTitle], [releaseYear], [genreID], [artistID], [albumArtwork], [price]) VALUES (5, N'Viva la Vida or Death to All His Friends', 2008, 2, 2, N'VivalaVidaorDeathandAllHisFriends.jpg', CAST(44.99 AS Decimal(8, 2)))
 GO
-INSERT [dbo].[Album] ([ID], [albumTitle], [yearOfRelease], [genre], [artistID], [albumArtwork], [price]) VALUES (7, N'Sam''s Town', 2006, N'Rock', 3, N'SamsTown.jpg', CAST(94.99 AS Decimal(8, 2)))
+INSERT [dbo].[Album] ([ID], [albumTitle], [releaseYear], [genreID], [artistID], [albumArtwork], [price]) VALUES (7, N'Sam''s Town', 2006, 1, 3, N'SamsTown.jpg', CAST(94.99 AS Decimal(8, 2)))
 GO
-INSERT [dbo].[Album] ([ID], [albumTitle], [yearOfRelease], [genre], [artistID], [albumArtwork], [price]) VALUES (8, N'Hot Fuss', 2004, N'Alternative', 3, N'HotFuss.jpg', CAST(44.99 AS Decimal(8, 2)))
+INSERT [dbo].[Album] ([ID], [albumTitle], [releaseYear], [genreID], [artistID], [albumArtwork], [price]) VALUES (8, N'Hot Fuss', 2004, 2, 3, N'HotFuss.jpg', CAST(44.99 AS Decimal(8, 2)))
 GO
 SET IDENTITY_INSERT [dbo].[Album] OFF
 GO
@@ -150,6 +165,15 @@ INSERT [dbo].[Artist] ([ID], [artistName]) VALUES (3, N'The Killers')
 GO
 SET IDENTITY_INSERT [dbo].[Artist] OFF
 GO
+SET IDENTITY_INSERT [dbo].[Genre] ON 
+
+GO
+INSERT [dbo].[Genre] ([ID], [genreName]) VALUES (1, N'Rock')
+GO
+INSERT [dbo].[Genre] ([ID], [genreName]) VALUES (2, N'Alternative')
+GO
+SET IDENTITY_INSERT [dbo].[Genre] OFF
+GO
 ALTER TABLE [dbo].[Album]  WITH CHECK ADD  CONSTRAINT [FK_Album_Artist] FOREIGN KEY([artistID])
 REFERENCES [dbo].[Artist] ([ID])
 ON UPDATE CASCADE
@@ -157,11 +181,18 @@ ON DELETE CASCADE
 GO
 ALTER TABLE [dbo].[Album] CHECK CONSTRAINT [FK_Album_Artist]
 GO
-ALTER TABLE [dbo].[Tracklist]  WITH CHECK ADD  CONSTRAINT [FK_Tracklist_Album] FOREIGN KEY([albumID])
-REFERENCES [dbo].[Album] ([ID])
+ALTER TABLE [dbo].[Album]  WITH CHECK ADD  CONSTRAINT [FK_Album_Genre] FOREIGN KEY([genreID])
+REFERENCES [dbo].[Genre] ([ID])
 ON UPDATE CASCADE
 GO
-ALTER TABLE [dbo].[Tracklist] CHECK CONSTRAINT [FK_Tracklist_Album]
+ALTER TABLE [dbo].[Album] CHECK CONSTRAINT [FK_Album_Genre]
+GO
+ALTER TABLE [dbo].[Tracklist]  WITH NOCHECK ADD  CONSTRAINT [FK_Tracklist_Album] FOREIGN KEY([albumID])
+REFERENCES [dbo].[Album] ([ID])
+ON UPDATE CASCADE
+NOT FOR REPLICATION 
+GO
+ALTER TABLE [dbo].[Tracklist] NOCHECK CONSTRAINT [FK_Tracklist_Album]
 GO
 USE [master]
 GO

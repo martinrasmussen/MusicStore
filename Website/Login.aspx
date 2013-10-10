@@ -1,20 +1,16 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Login.aspx.cs" Inherits="Website.Login" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/Main.Master" CodeBehind="Login.aspx.cs" Inherits="Website.Login" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
+    <title>Home</title>
+</asp:Content>
 
-<!DOCTYPE html>
-
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-    <title></title>
-</head>
-<body>
-  <form id="form1" runat="server">
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
     <div>
     
         User name:
-        <asp:TextBox ID="txtUser" runat="server"></asp:TextBox>
+        <asp:TextBox ID="txtUser" CssClass="form-control" runat="server"></asp:TextBox>
         <br />
         Password:&nbsp;
-        <asp:TextBox ID="txtPassword" runat="server" TextMode="Password"></asp:TextBox>
+        <asp:TextBox ID="txtPassword" CssClass="form-control" runat="server" TextMode="Password"></asp:TextBox>
         <br />
         <asp:Button ID="cmdLogin" runat="server" Text="Login" OnClick="cmdLogin_Click" />
         <br />
@@ -24,10 +20,5 @@
         <br />
         <br />
         <asp:Label ID="lblStatus" runat="server" ForeColor="Red"></asp:Label>
-        <br />
-        <br />
-        User name: test<br />
-        Password: test-12</div>
-    </form>
-</body>
-</html>
+    </div>
+</asp:Content>

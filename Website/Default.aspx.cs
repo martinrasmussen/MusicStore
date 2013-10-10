@@ -1,12 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Threading;
-using System.Web;
-using System.Web.UI;
+using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 using DataAccessLayer;
+
 
 namespace Website
 {
@@ -14,22 +11,20 @@ namespace Website
     {
         private List<Album> albumsList;
         public Dictionary<Album, int> cart;
-        private DataAccessLayer.Repository repo;
+        private DataAccessLayer.AlbumRepository repo = new AlbumRepository();
 
         // Constant variables for the cover photo size
-        const int COVER_WIDTH = 100;
-        const int COVER_HEIGHT = 100;
+        const int COVER_WIDTH = 150;
+        const int COVER_HEIGHT = 150;
 
         // Takes care [of what]?
         protected void Page_Init(object sender, EventArgs e)
         {
-                // Initialize the ...
+            // Query the database for 
             if (!IsPostBack)
             {
-                repo = new Repository(); // Data access layer // But it shouldn't do that every time.
                 albumsList = repo.GetAll(); // Get all albums from the DB // But it shouldn't do that every time.
             }
-
         }
 
         // Takes care of [what?]
@@ -57,41 +52,22 @@ namespace Website
             // Populate the page with a table full of albums
             foreach (Album album in albumsList)
             {
-                // Create an 'add' button
-                Button btnAdd = new Button();
-                btnAdd.Text = "Add to cart";
-
-                // Initialize a row for the table
-                TableRow tblRow = new TableRow();
-
-                // Creates a cell to be put in to the table
-                TableCell tblCell1 = new TableCell();
-                TableCell tblCell2 = new TableCell();
-                TableCell tblCell3 = new TableCell();
 
                 // Create cover photo
-                Image cover = new Image();
+                ImageButton cover = new ImageButton();
                 cover.ImageUrl = string.Format(@"~\Images\{0}", album.AlbumArtwork);
                 cover.Width = COVER_WIDTH;
                 cover.Height = COVER_HEIGHT;
 
                 // Add listener to image cell
-                btnAdd.Command += cmdAdd_Click;
-                btnAdd.CommandName = "Add";
-                btnAdd.CommandArgument = albumsList.IndexOf(album).ToString();
+                cover.Command += cmdAdd_Click;
+                cover.CommandName = "Add";
+                cover.CommandArgument = albumsList.IndexOf(album).ToString();
 
-                // Add data to the cell here
-                tblCell1.Controls.Add(cover);
-                tblCell2.Text = album.AlbumName;
-                tblCell3.Controls.Add(btnAdd);
-
-                // Add the cell to the row
-                tblRow.Cells.Add(tblCell1);
-                tblRow.Cells.Add(tblCell2);
-                tblRow.Cells.Add(tblCell3);
-
-                // Add the row to the table
-                tblAlbums.Rows.Add(tblRow);
+                HtmlGenericControl div = new HtmlGenericControl("div");
+                div.Attributes["class"] = "cover-art";
+                div.Controls.Add(cover);
+                pnlContent.Controls.Add(div);
             }
         }
 
@@ -104,42 +80,46 @@ namespace Website
             decimal price = 0;
             foreach (var album in cart)
             {
+                Label lblCart = Master.FindControl("lblCart") as Label;
                 lblCart.Text += album.Key.AlbumName + " " + album.Value + "<br/>";
 
                 //The total price of the shopping cart @TODO
+                Label lblCartPrice = Master.FindControl("lblCartPrice") as Label; 
                 lblCartPrice.Text = Convert.ToString(price += 50);
             }
             
         }
 
-        // Click listener for the Add function
-        protected void cmdAdd_Click(object sender, CommandEventArgs e)
+        // Click listener for the Add function.
+        private void cmdAdd_Click(object sender, CommandEventArgs e)
         {
-            
-            // Add selected movie to shopping cart
+            // Save the album which we clicked on into a local variable.
             var album = albumsList[Convert.ToInt32(e.CommandArgument)];
+            
+            // Declare a bool to check if we already have the item in the cart. False by default.
             bool hasFound = false;
-            
-            
-                foreach (var cartAlbum in cart.Keys)
+          
+            // Loop throught the cart and check if the album which we want to add is already there or not.
+            foreach (var cartAlbum in cart.Keys)
+            {
+                // If it is, set the hasFound to true and override the album var with the one already in the cart.
+                if (cartAlbum.ID.Equals(album.ID))
                 {
-                    if (cartAlbum.AlbumName.Equals(album.AlbumName))
-                    {
-                        hasFound = true;
-                        album = cartAlbum;
-                    }
+                    hasFound = true; // We found it!
+                    album = cartAlbum; // We save it!
                 }
+            }
+
+            // If we found it in the cart, we increase the quantity, which is the key in the cart dictionary
             if (hasFound)
             {
                 cart[album]++;
             }
+            // Else we just add it with a quantity of 1.
             else
             {
                 cart.Add(album, 1);
             }
-
-
-
         }
     }
 }
