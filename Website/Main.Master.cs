@@ -6,11 +6,13 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
+using DataAccessLayer;
 
 namespace Website
 {
     public partial class Main : System.Web.UI.MasterPage
     {
+        
         protected void Page_Load(object sender, EventArgs e)
         {
             // If user is logged in, show login and register 
@@ -32,6 +34,25 @@ namespace Website
 //                // Add the new controls to the navigation bar.
 //                navBar.Controls.Add(li);
 //            }
+        }
+        // Takes care of [what?]
+        protected void Page_PreRender(object sender, EventArgs e)
+        {
+            
+            // Copy shopping cart to view state
+            //Session["cart"] = cart;
+            Dictionary<Album, int> cart = (Dictionary<Album, int>)Session["cart"];
+            decimal price = 0;
+            foreach (var album in cart)
+            {
+                //Label lblCart = Master.FindControl("lblCart") as Label;
+                lblCart.Text += string.Format("{0} ({1}) , {2} DKK <br/>", album.Key.AlbumName, album.Value, album.Key.Price);
+
+                //The total price of the shopping cart @TODO
+                //Label lblCartPrice = Master.FindControl("lblCartPrice") as Label;
+                lblCartPrice.Text = Convert.ToString(price += album.Key.Price) + " DKK";
+            }
+
         }
     }
 }

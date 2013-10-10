@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Configuration;
+using System.Web.Profile;
 using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -10,17 +12,22 @@ namespace Website
 {
     public partial class Registration : System.Web.UI.Page
     {
-        protected void CreateUserWizard1_CreatedUser(object sender, EventArgs e)
+        protected void Page_Load(Object sender, EventArgs e)
         {
-            MembershipCreateStatus p = MembershipCreateStatus.Success;
-            Membership.CreateUser(CreateUserWizard1.UserName,
-               CreateUserWizard1.Password, CreateUserWizard1.Email,
-            CreateUserWizard1.Question, CreateUserWizard1.Answer, true, out p);
+            btnRegister.Click += cmdRegisterClick;
         }
 
-        protected void CreateUserWizard1_ContinueButtonClick(object sender, EventArgs e)
+        protected void cmdRegisterClick(Object sender, EventArgs e)
         {
-            Response.Redirect("Login.aspx");
-        } 
+            string username = UserName.Value;
+            string password = pw.Value;
+            string myEmail = email.Value;
+
+            Membership.CreateUser(username, password, myEmail);
+
+            Server.Transfer("Login.aspx");
+
+
+        }
     }
 }

@@ -32,20 +32,20 @@ namespace Website
         {
             
                 // Create view state item for the shopping cart if it's empty
-                if (ViewState["cart"] == null)
+                if (Session["cart"] == null)
                 {
-                    ViewState["cart"] = new Dictionary<Album, int>();
+                    Session["cart"] = new Dictionary<Album, int>();
                 }
 
-                if (ViewState["albums"] == null)
+                if (Session["albums"] == null)
                 {
-                    ViewState["albums"] = new List<Album>();
+                    Session["albums"] = new List<Album>();
                 }
                 
-                cart = (Dictionary<Album, int>)ViewState["cart"]; ; // Create an empty cart.
+                cart = (Dictionary<Album, int>)Session["cart"]; ; // Create an empty cart.
 
                 if(IsPostBack)
-                    albumsList = (List<Album>) ViewState["albums"];
+                    albumsList = (List<Album>) Session["albums"];
 
             
 
@@ -70,24 +70,13 @@ namespace Website
                 pnlContent.Controls.Add(div);
             }
         }
-
-        // Takes care of [what?]
         protected void Page_PreRender(object sender, EventArgs e)
         {
-            ViewState["albums"] = albumsList;
-            // Copy shopping cart to view state
-            ViewState["cart"] = cart;
-            decimal price = 0;
-            foreach (var album in cart)
-            {
-                Label lblCart = Master.FindControl("lblCart") as Label;
-                lblCart.Text += album.Key.AlbumName + " " + album.Value + "<br/>";
 
-                //The total price of the shopping cart @TODO
-                Label lblCartPrice = Master.FindControl("lblCartPrice") as Label; 
-                lblCartPrice.Text = Convert.ToString(price += 50);
-            }
-            
+            // Copy shopping cart to view state
+            Session["cart"] = cart;
+            Session["albums"] = albumsList;
+
         }
 
         // Click listener for the Add function.

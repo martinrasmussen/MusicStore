@@ -5,8 +5,7 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
-    <div>
-    <asp:createuserwizard ID="CreateUserWizard1" runat="server"> <WizardSteps> <asp:CreateUserWizardStep ID="CreateUserWizardStep1" runat="server"/> <asp:CompleteWizardStep ID="CompleteWizardStep1" runat="server"/> </WizardSteps> </asp:createuserwizard>
-
-    </div>
+    <asp:TextBox runat="server" ÍD="username" CssClass="form-control"/>
+    <asp:TextBox runat="server" ÍD="password" TextMode="Password"/>
+    <asp:Button type="button" runat="server" id="btnRegister" CssClass="btn btn-success" Text="Create"></asp:Button> 
 </asp:Content>
