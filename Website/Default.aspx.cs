@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using System.Threading;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -23,9 +24,12 @@ namespace Website
         protected void Page_Init(object sender, EventArgs e)
         {
                 // Initialize the ...
+            if (!IsPostBack)
+            {
                 repo = new Repository(); // Data access layer // But it shouldn't do that every time.
                 albumsList = repo.GetAll(); // Get all albums from the DB // But it shouldn't do that every time.
-            
+            }
+
         }
 
         // Takes care of [what?]
@@ -37,8 +41,16 @@ namespace Website
                 {
                     ViewState["cart"] = new Dictionary<Album, int>();
                 }
+
+                if (ViewState["albums"] == null)
+                {
+                    ViewState["albums"] = new List<Album>();
+                }
                 
                 cart = (Dictionary<Album, int>)ViewState["cart"]; ; // Create an empty cart.
+
+                if(IsPostBack)
+                    albumsList = (List<Album>) ViewState["albums"];
 
             
 
@@ -86,12 +98,13 @@ namespace Website
         // Takes care of [what?]
         protected void Page_PreRender(object sender, EventArgs e)
         {
+            ViewState["albums"] = albumsList;
             // Copy shopping cart to view state
             ViewState["cart"] = cart;
             decimal price = 0;
             foreach (var album in cart)
             {
-                lblCart.Text += album.Key.AlbumName + " " + album.Key.Price + "<br/>";
+                lblCart.Text += album.Key.AlbumName + " " + album.Value + "<br/>";
 
                 //The total price of the shopping cart @TODO
                 lblCartPrice.Text = Convert.ToString(price += 50);
@@ -102,9 +115,31 @@ namespace Website
         // Click listener for the Add function
         protected void cmdAdd_Click(object sender, CommandEventArgs e)
         {
+            
             // Add selected movie to shopping cart
             var album = albumsList[Convert.ToInt32(e.CommandArgument)];
-            cart.Add(album, 1);
+            bool hasFound = false;
+            
+            
+                foreach (var cartAlbum in cart.Keys)
+                {
+                    if (cartAlbum.AlbumName.Equals(album.AlbumName))
+                    {
+                        hasFound = true;
+                        album = cartAlbum;
+                    }
+                }
+            if (hasFound)
+            {
+                cart[album]++;
+            }
+            else
+            {
+                cart.Add(album, 1);
+            }
+
+
+
         }
     }
 }
