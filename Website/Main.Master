@@ -44,11 +44,14 @@
                     <li id="myRegister" runat="server"><a href="Registration.aspx">Register</a></li>
                     <!-- Shopping cart -->
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle glyphicon glyphicon-shopping-cart" data-toggle="dropdown"><b class="caret"></b></a>
-                        <ul class="dropdown-menu">
+                        <a href="#" class="dropdown-toggle glyphicon glyphicon-shopping-cart" data-toggle="dropdown">
+                            <asp:Label runat="server" ID="lblCartCount">0</asp:Label>
+                            <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu" style="min-width: 200px">
                             <asp:Label runat="server" ID="lblCart" EnableViewState="false"></asp:Label>
-                            <a class="divider"></a>
-                            <asp:Label runat="server" ID="lblCartPrice"></asp:Label>
+                            <a class="divider"><hr/></a>
+                            <asp:Label runat="server" ID="lblCartPrice" ></asp:Label>
                         </ul>
                     </li>
                 </ul>

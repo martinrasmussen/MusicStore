@@ -43,16 +43,24 @@ namespace Website
             //Session["cart"] = cart;
             Dictionary<Album, int> cart = (Dictionary<Album, int>)Session["cart"];
             decimal price = 0;
-            foreach (var album in cart)
+
+            // Stores the count of the cart;
+            int cartCount = 0;
+            if (cart != null)
             {
-                //Label lblCart = Master.FindControl("lblCart") as Label;
-                lblCart.Text += string.Format("{0} ({1}) , {2} DKK <br/>", album.Key.AlbumName, album.Value, album.Key.Price);
+                foreach (var album in cart)
+                {
+                    //Label lblCart = Master.FindControl("lblCart") as Label;
+                    lblCart.Text += string.Format("{0} ({1}) , {2} DKK <br/>", album.Key.AlbumName, album.Value,
+                        album.Key.Price);
 
-                //The total price of the shopping cart @TODO
-                //Label lblCartPrice = Master.FindControl("lblCartPrice") as Label;
-                lblCartPrice.Text = Convert.ToString(price += album.Key.Price) + " DKK";
+                    //The total price of the shopping cart @TODO
+                    //Label lblCartPrice = Master.FindControl("lblCartPrice") as Label;
+                    lblCartPrice.Text = Convert.ToString(price += album.Key.Price) + " DKK";
+                    cartCount += album.Value;
+                    lblCartCount.Text = cartCount.ToString();
+                }
             }
-
         }
     }
 }

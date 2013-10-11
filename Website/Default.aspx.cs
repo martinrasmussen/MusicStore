@@ -14,8 +14,8 @@ namespace Website
         private DataAccessLayer.AlbumRepository repo = new AlbumRepository();
 
         // Constant variables for the cover photo size
-        const int COVER_WIDTH = 150;
-        const int COVER_HEIGHT = 150;
+        const int COVER_WIDTH = 175;
+        const int COVER_HEIGHT = 175;
 
         // Takes care [of what]?
         protected void Page_Init(object sender, EventArgs e)
@@ -68,6 +68,7 @@ namespace Website
                 div.Attributes["class"] = "cover-art";
                 div.Controls.Add(cover);
                 pnlContent.Controls.Add(div);
+                
             }
         }
         protected void Page_PreRender(object sender, EventArgs e)
@@ -87,7 +88,8 @@ namespace Website
             
             // Declare a bool to check if we already have the item in the cart. False by default.
             bool hasFound = false;
-          
+            
+            
             // Loop throught the cart and check if the album which we want to add is already there or not.
             foreach (var cartAlbum in cart.Keys)
             {
