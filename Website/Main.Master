@@ -48,8 +48,9 @@
                             <asp:Label runat="server" ID="lblCartCount">0</asp:Label>
                             <b class="caret"></b>
                         </a>
-                        <ul class="dropdown-menu" style="min-width: 200px">
-                            <asp:Label runat="server" ID="lblCart" EnableViewState="false"></asp:Label>
+                        <ul class="dropdown-menu" style="min-width: 350px">
+                            <asp:Label runat="server" ID="lblCart" EnableViewState="false" CssClass="pull-left"></asp:Label> <asp:Label runat="server" ID="lblCartPurchase" EnableViewState="false" CssClass="pull-right"></asp:Label>
+
                             <a class="divider"><hr/></a>
                             <asp:Label runat="server" ID="lblCartPrice" ></asp:Label>
                         </ul>

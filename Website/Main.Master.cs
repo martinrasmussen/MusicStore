@@ -51,15 +51,18 @@ namespace Website
                 foreach (var album in cart)
                 {
                     //Label lblCart = Master.FindControl("lblCart") as Label;
-                    lblCart.Text += string.Format("{0} ({1}) , {2} DKK <br/>", album.Key.AlbumName, album.Value,
-                        album.Key.Price);
+                    lblCart.Text += string.Format("{0} ({1}) <br/>", album.Key.AlbumName, album.Value);
+                    lblCartPurchase.Text += string.Format("{0} DKK <br/>", album.Key.Price);
 
+                    
                     //The total price of the shopping cart @TODO
                     //Label lblCartPrice = Master.FindControl("lblCartPrice") as Label;
-                    lblCartPrice.Text = Convert.ToString(price += album.Key.Price) + " DKK";
                     cartCount += album.Value;
-                    lblCartCount.Text = cartCount.ToString();
+                    price += album.Key.Price;
                 }
+                lblCartPrice.Text = "</br>" +Convert.ToString(price) + " DKK";
+                lblCartCount.Text = cartCount.ToString();
+
             }
         }
     }
