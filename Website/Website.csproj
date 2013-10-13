@@ -63,25 +63,28 @@
     </Content>
     <Content Include="Checkout.aspx" />
     <Content Include="Confirmation.aspx" />
-    <Content Include="Content\css\bootstrap.css" />
     <Content Include="Content\css\bootstrap.min.css" />
     <Content Include="Content\css\main.css" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Default.aspx" />
-    <Content Include="Images\2020-carousel.jpg" />
+    <Content Include="Images\Drake.jpg" />
+    <Content Include="Images\Justin.jpg" />
     <Content Include="Images\52ndStreet.JPG" />
     <Content Include="Images\ARushofBloodtotheHead.jpg" />
     <Content Include="Images\HotFuss.jpg" />
+    <Content Include="Images\Kanye-Jayz.jpg" />
+    <Content Include="Images\NothingWasTheSame.png" />
     <Content Include="Images\PianoMan.jpg" />
     <Content Include="Images\SamsTown.jpg" />
+    <Content Include="Images\The2020Experience.png" />
     <Content Include="Images\Turnstiles.jpg" />
     <Content Include="Images\VivalaVidaorDeathandAllHisFriends.jpg" />
+    <Content Include="Images\WatchTheThrone.jpg" />
     <Content Include="Login.aspx" />
     <Content Include="Registration.aspx" />
-    <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <Content Include="Scripts\holder.js" />
     <Content Include="Scripts\jquery-2.0.3.min.js" />
+    <Content Include="Scripts\main.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>

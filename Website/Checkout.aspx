@@ -7,7 +7,6 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
     <div>
         <h3>Enter the following credentials </h3>
-        <
         <asp:TextBox ID="txtFirstName" CssClass="form-control" runat="server" placeholder="First Name"></asp:TextBox>
         <br />
         <asp:TextBox ID="txtLastName" CssClass="form-control" runat="server" placeholder="Last Name"></asp:TextBox>
@@ -20,7 +19,6 @@
         <br />
         <asp:TextBox ID="txtEmail" CssClass="form-control" runat="server" placeholder="Email"></asp:TextBox>
         <br />
-        <asp:Button ID="btnSubmit" runat="server" Text="Submit" OnClick="btnSubmit_OnClickSubmit_Click" CssClass="btn btn-primary"/>
-     
+        <asp:Button ID="btnSubmit" runat="server" Text="Checkout" OnClick="btnSubmit_OnClickSubmit_Click" CssClass="btn btn-primary"/>
     </div>
 </asp:Content>

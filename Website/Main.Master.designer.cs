@@ -31,15 +31,6 @@ namespace Website {
         protected global::System.Web.UI.HtmlControls.HtmlForm Form1;
         
         /// <summary>
-        /// navBar control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl navBar;
-        
-        /// <summary>
         /// myLogin control.
         /// </summary>
         /// <remarks>
@@ -67,22 +58,13 @@ namespace Website {
         protected global::System.Web.UI.WebControls.Label lblCartCount;
         
         /// <summary>
-        /// lblCart control.
+        /// ulCart control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblCart;
-        
-        /// <summary>
-        /// lblCartPurchase control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblCartPurchase;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl ulCart;
         
         /// <summary>
         /// lblCartPrice control.
@@ -92,6 +74,15 @@ namespace Website {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblCartPrice;
+        
+        /// <summary>
+        /// btnRemove control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnRemove;
         
         /// <summary>
         /// ContentPlaceHolder1 control.

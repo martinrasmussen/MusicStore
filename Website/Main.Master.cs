@@ -12,58 +12,54 @@ namespace Website
 {
     public partial class Main : System.Web.UI.MasterPage
     {
-        
-        protected void Page_Load(object sender, EventArgs e)
-        {
-            // If user is logged in, show login and register 
-//            if (System.Web.HttpContext.Current.User.Identity.IsAuthenticated)
-//            {
-//                // Hide the login and logout links.
-//                myLogin.Visible = false;
-//                myRegister.Visible = false;
-//
-//                // Create a label with the currently logged in username.
-//                HtmlGenericControl span = new HtmlGenericControl("span");
-//
-//                span.InnerText = String.Format("Welcome, {0}", System.Web.HttpContext.Current.User.Identity.Name);
-//
-//                // Create a dynamic list item which will be added to the navigation.
-//                HtmlGenericControl li = new HtmlGenericControl("li");
-//                li.Controls.Add(span);
-//
-//                // Add the new controls to the navigation bar.
-//                navBar.Controls.Add(li);
-//            }
-        }
-        // Takes care of [what?]
+
+
+        // Takes care of the rendering of the shopping cart
         protected void Page_PreRender(object sender, EventArgs e)
-        {
-            
-            // Copy shopping cart to view state
-            //Session["cart"] = cart;
+        {      
+            // Get shopping cart from Session state.
             Dictionary<Album, int> cart = (Dictionary<Album, int>)Session["cart"];
+            
+            // Var to hold the total price.
             decimal price = 0;
 
-            // Stores the count of the cart;
+            // Stores the count of the cart.
             int cartCount = 0;
+
+            // If cart is not empty
             if (cart != null)
             {
+                // Loop through each of it's element
                 foreach (var album in cart)
                 {
-                    //Label lblCart = Master.FindControl("lblCart") as Label;
-                    lblCart.Text += string.Format("{0} ({1}) <br/>", album.Key.AlbumName, album.Value);
-                    lblCartPurchase.Text += string.Format("{0} DKK <br/>", album.Key.Price);
+                    // Add the albums underneath each onto a list
+                    HtmlGenericControl li = new HtmlGenericControl("li");
 
+                    // The album name + the quantity
+                    Label albumName = new Label {Text = string.Format("{0} ({1})", album.Key.AlbumName, album.Value)};
+
+                    // The individual price of the albums
+                    Label albumPrice = new Label {Text = string.Format("{0} DKK", album.Key.Price)};
+                    albumPrice.Attributes["class"] = "pull-right"; // Pulls it to the right
+
+                    // Add the controls into the li tag
+                    li.Controls.Add(albumName);
+                    li.Controls.Add(albumPrice);
+
+                    // Add the li tag onto the ul list tag
+                    ulCart.Controls.Add(li);
+
+                    // Calculate the total price
+                    price += album.Key.Price*album.Value;
                     
-                    //The total price of the shopping cart @TODO
-                    //Label lblCartPrice = Master.FindControl("lblCartPrice") as Label;
+                    // Increment the counter
                     cartCount += album.Value;
-                    price += album.Key.Price;
                 }
-                lblCartPrice.Text = "</br>" +Convert.ToString(price) + " DKK";
-                lblCartCount.Text = cartCount.ToString();
-
+                // Show the total price.
+                lblCartPrice.Text = "   " + price.ToString() + " DKK";
             }
+            // Update the cart counter.
+            lblCartCount.Text = cartCount.ToString();
         }
     }
 }

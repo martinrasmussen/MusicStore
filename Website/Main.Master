@@ -1,4 +1,5 @@
 ﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Main.master.cs" Inherits="Website.Main" %>
+<%@ Register TagPrefix="asp" Namespace="System.Web.UI.HtmlControls" Assembly="System.Web, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" %>
 
 <!-- Using HTML5 -->
 <!DOCTYPE html>
@@ -19,8 +20,8 @@
         <meta name="author" content="Antal J&aacute;nos Monori, Martin Rasmussen" />
 
         <!-- Default bootstrap stylesheet -->
-        <link rel="stylesheet" type="text/css" href="/Content/css/bootstrap.css"/>
-
+        <link rel="stylesheet" type="text/css" href="/Content/css/bootstrap.min.css"/>
+       
         <!-- Out custom stylesheet -->
         <link href="/Content/css/main.css" rel="stylesheet" type="text/css" />
     
@@ -38,25 +39,32 @@
             <!-- Header -->
             <div class="header">
                 <!-- Navigation bar -->
-                <ul class="nav nav-pills pull-right" id="navBar" runat="server">
+                <ul class="nav nav-pills pull-right" runat="server">
                     <li class="active"><a href="Default.aspx">Home</a></li>
                     <li id="myLogin" runat="server"><a href="Login.aspx">Login</a></li>
                     <li id="myRegister" runat="server"><a href="Registration.aspx">Register</a></li>
-                    <!-- Shopping cart -->
+                    <!-- Shopping cart menu option -->
                     <li class="dropdown">
+                        <!-- Button with icon, caret and counter -->
                         <a href="#" class="dropdown-toggle glyphicon glyphicon-shopping-cart" data-toggle="dropdown">
                             <asp:Label runat="server" ID="lblCartCount">0</asp:Label>
                             <b class="caret"></b>
                         </a>
-                        <ul class="dropdown-menu" style="min-width: 350px">
-                            <asp:Label runat="server" ID="lblCart" EnableViewState="false" CssClass="pull-left"></asp:Label> <asp:Label runat="server" ID="lblCartPurchase" EnableViewState="false" CssClass="pull-right"></asp:Label>
-
-                            <a class="divider"><hr/></a>
-                            <asp:Label runat="server" ID="lblCartPrice" ></asp:Label>
-                        </ul>
+                        <!-- Actual cart -->
+                        <div class="dropdown-menu" runat="server">
+                            
+                            <!-- Items are added dynamically to this div -->
+                            <ul runat="server" ID="ulCart"></ul>
+                            <!-- -->
+                            <hr style="margin-top: 0;margin-bottom:5px;border: 0;border-top: 1px solid #ddd;"/> <!-- Line -->
+                            <asp:Label CssClass="pull-right" runat="server" ID="lblCartPrice"></asp:Label> <!-- Total price -->
+                            <button type="submit" formaction="/Checkout.aspx" class="btn btn-primary pull-left" style="margin-left: 10px;">Checkout</button>
+                            <asp:Button CssClass="btn btn-danger pull-left" runat="server" ID="btnRemove" Text="Clear" />
+                        </div>
                     </li>
                 </ul>
-                <h3 class="text-muted">Online Music Store</h3> 
+                <!-- Website name -->
+                <h3 class="text-muted">Online Music Store</h3>
             </div>
             
             <!-- This is where the main content of the page goes -->
@@ -64,9 +72,9 @@
             
             <!-- Scripts should be at the end of the docuent before the body close-tag, so the page load seems faster for the end-user -->
             <script src="Scripts/jquery-2.0.3.min.js" type="text/javascript"> </script>
-            <script src="Scripts/bootstrap.min.js"> </script>
-            <script src="Scripts/holder.js"> </script>
-            
+            <script src="Scripts/bootstrap.min.js" type="text/javascript"> </script>
+            <script src="/Scripts/main.js" type="text/javascript"> </script>
+
             <!-- Footer -->
             <hr/>
             <footer>
