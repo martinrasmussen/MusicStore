@@ -49,6 +49,9 @@ namespace Website
         // Load and set controls
         protected void Page_Load(object sender, EventArgs e)
         {
+            Button btn = (Button) Master.FindControl("btnRemove");
+            btn.Click += cmdClear_Click;
+
             // Populate the page with a table full of albums
             foreach (Album album in albumsList)
             {
@@ -144,6 +147,12 @@ namespace Website
             {
                 cart.Add(album, 1);
             }
+        }
+
+
+        protected void cmdClear_Click(object sender, EventArgs e)
+        {
+            cart = new Dictionary<Album, int>();
         }
     }
 }

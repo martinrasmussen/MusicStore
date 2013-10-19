@@ -23,7 +23,6 @@
                     <div class="carousel-caption">
                         <h1><strong>The 20/20 Experience</strong></h1>
                         <p>Buy Justing Timberlake's latest album, and you'll get free shipping on your order.</p>
-                        <p><a class="btn btn-sm btn-primary" href="#" role="button">Add to cart</a></p>
                     </div>
                 </div>
             </div>
@@ -34,7 +33,6 @@
                     <div class="carousel-caption">
                          <h1><strong>Watch the Throne</strong></h1>
                         <p>Planning a trip to Paris? This album is a must!</p>
-                        <p><a class="btn btn-sm btn-primary" href="#" role="button">Add to cart</a></p>
                     </div>
                 </div>
             </div>
@@ -45,7 +43,6 @@
                     <div class="carousel-caption">
                          <h1><strong>Nothing Was the Same</strong></h1>
                         <p>Not at all. Ex-Degrassi star dropping a new album.</p>
-                        <p><a class="btn btn-sm btn-primary" href="#" role="button" >Add to cart</a></p>
                     </div>
                 </div>
             </div>

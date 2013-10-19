@@ -42,7 +42,6 @@ namespace Website
 
         protected void btnSubmit_OnClickSubmit_Click(object sender, EventArgs e)
         {
-     
             Server.Transfer("Confirmation.aspx");
         }
 

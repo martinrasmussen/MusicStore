@@ -11,9 +11,12 @@ namespace Website
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            Checkout ch = PreviousPage as Checkout;
+            if (IsPostBack)
+            {
+                Checkout ch = PreviousPage as Checkout;
+                lblFirstName.Text = ch.orderInfo;
+            }
 
-            lblFirstName.Text = ch.orderInfo;
         }
     }
 }

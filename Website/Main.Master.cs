@@ -13,10 +13,9 @@ namespace Website
     public partial class Main : System.Web.UI.MasterPage
     {
 
-
         // Takes care of the rendering of the shopping cart
         protected void Page_PreRender(object sender, EventArgs e)
-        {      
+        {
             // Get shopping cart from Session state.
             Dictionary<Album, int> cart = (Dictionary<Album, int>)Session["cart"];
             
