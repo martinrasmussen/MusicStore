@@ -12,11 +12,11 @@ namespace DataAccessLayer
     public class AlbumRepository : IRepository<Album>
     {
         // Connection string to the database. It has to be changed if yours is different!;
-        private const string DB_INSTANCE_NAME = @"ASPIRE-5741";
-        private const string DB_NAME = @"MusicStore";
+        private const string DB_INSTANCE_NAME = @"ASPIRE-5741"; // TODO: Change this!
+        private const string DB_NAME = @"MusicStore"; // TODO: Change this!
         private const bool SECURITY = true;
 
-        private string _strConnection;
+        private string _strConnection; // The actual connection string
 
         /// <summary>
         /// Initializes a new instance of the <see cref="AlbumRepository"/> class.
@@ -46,23 +46,7 @@ namespace DataAccessLayer
         /// <exception cref="System.NotImplementedException"></exception>
         public void Insert(Album entity)
         {
-            // Create a connection.
-            DbConnection connection = new SqlConnection(_strConnection);
-
-            // Create a command.
-            DbCommand cmd = connection.CreateCommand();
-
-            // Here we set the command to be our sql query.
-            cmd.CommandText = String.Format("Insert into Album (Album.albumName, Album.releaseYear, Album.genre, Album.artistName, Album.albumArtwork, Album.price) values ({0}, {1}, {2}, {3}, {4}, {5}, {6});", entity.AlbumName, entity.ArtistName, entity.Genre, entity.ReleaseYear, entity.Price, entity.AlbumArtwork);
-
-            // Open the connection.
-            connection.Open();
-
-            // Execute the sql command.
-            cmd.ExecuteNonQuery();
-
-            // Close the connection.
-            connection.Close();
+            throw new NotImplementedException();
         }
 
         /// <summary>
@@ -72,23 +56,7 @@ namespace DataAccessLayer
         /// <exception cref="System.NotImplementedException"></exception>
         public void Delete(Album entity)
         {
-            // Create a connection.
-            DbConnection connection = new SqlConnection(_strConnection);
-
-            // Create a command.
-            DbCommand cmd = connection.CreateCommand();
-
-            // Here we set the command to be our sql query.
-            cmd.CommandText = String.Format("Delete from Album where Album.ID = {0};",entity.ID);
-
-            // Open the connection.
-            connection.Open();
-        
-            // Execute the sql command.
-            cmd.ExecuteNonQuery();
-
-            // Close the connection.
-            connection.Close();
+            throw new NotImplementedException();
         }
 
 
@@ -106,10 +74,10 @@ namespace DataAccessLayer
 
             // Create a command.
             DbCommand cmd = connection.CreateCommand();
-            
+
             // Here we set the command to be our sql query.
-            cmd.CommandText = "Select Album.ID, Album.artistName, Album.albumTitle, Album.albumArtwork, Album.genre, Album.releaseYear, Album.price From Album;";
-            
+            cmd.CommandText = "Select Album.ID, Artist.artistName, Album.albumTitle, Album.albumArtwork, Genre.genreName, Album.releaseYear, Album.price From Album JOIN Artist ON Album.artistID = Artist.ID JOIN Genre ON Album.genreID = Genre.ID";
+
             // Open the connection.
             connection.Open();
 
@@ -119,19 +87,17 @@ namespace DataAccessLayer
             // While there are rows in our output.
             while (dr.Read())
             {
-                // Create an album with the information from the database.
-                Album album = new Album
-                {
-                    ID = dr.GetInt32(dr.GetOrdinal("ID")),
-                    ArtistName = dr.GetString(dr.GetOrdinal("artistName")),
-                    AlbumName = dr.GetString(dr.GetOrdinal("albumTitle")),
-                    ReleaseYear = dr.GetInt16(dr.GetOrdinal("releaseYear")),
-                    Genre = dr.GetString(dr.GetOrdinal("genre")),
-                    AlbumArtwork = dr.GetString(dr.GetOrdinal("albumArtwork")),
-                    Price = dr.GetDecimal(dr.GetOrdinal("price"))
-                };
+                // Create an empty album.
+                Album album = new Album();
 
                 // Set the album's properties.
+                album.ID = dr.GetInt32(dr.GetOrdinal("ID"));
+                album.ArtistName = dr.GetString(dr.GetOrdinal("artistName"));
+                album.AlbumName = dr.GetString(dr.GetOrdinal("albumTitle"));
+                album.ReleaseYear = dr.GetInt16(dr.GetOrdinal("releaseYear"));
+                album.Genre = dr.GetString(dr.GetOrdinal("genreName"));
+                album.AlbumArtwork = dr.GetString(dr.GetOrdinal("albumArtwork"));
+                album.Price = dr.GetDecimal(dr.GetOrdinal("price"));
 
                 // Add the album to our list
                 albumList.Add(album);
@@ -151,7 +117,8 @@ namespace DataAccessLayer
         /// <param name="id">The identifier.</param>
         /// <returns></returns>
         /// <exception cref="System.NotImplementedException"></exception>
-        public Album GetById(int id) {
+        public Album GetById(int id)
+        {
             // Create a connection.
             DbConnection connection = new SqlConnection(_strConnection);
 
@@ -162,7 +129,7 @@ namespace DataAccessLayer
             DbCommand cmd = connection.CreateCommand();
 
             // Here we set the command to be our sql query.
-            cmd.CommandText = String.Format("Select Album.ID, Album.artistName, Album.albumTitle, Album.albumArtwork, Album.genre, Album.releaseYear, Album.price From Album WHERE Album.ID = {0};", id);
+            cmd.CommandText = String.Format("Select Album.ID, Artist.artistName, Album.albumTitle, Album.albumArtwork, Genre.genreName, Album.releaseYear, Album.price From Album JOIN Artist ON Album.artistID = Artist.ID JOIN Genre ON Album.genreID = Genre.ID WHERE Album.ID = {0};", id);
 
             // Open the connection.
             connection.Open();

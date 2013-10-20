@@ -6,12 +6,22 @@ namespace Website
 {
     public partial class Registration : System.Web.UI.Page
     {
+        /// <summary>
+        /// Handles the Load event of the Page control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         protected void Page_Load(Object sender, EventArgs e)
         {
             // Assign the click function to the Register button.
             btnSubmit.Click += CmdSubmit_Click;
         }
 
+        /// <summary>
+        /// Handles the Click event of the CmdSubmit control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         protected void CmdSubmit_Click(Object sender, EventArgs e)
         {
             // Create variable to hold creation status.

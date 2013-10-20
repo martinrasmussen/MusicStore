@@ -150,9 +150,14 @@ namespace Website
         }
 
 
-        protected void cmdClear_Click(object sender, EventArgs e)
+        /// <summary>
+        /// Handles the Click event of the cmdClear control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        private void cmdClear_Click(object sender, EventArgs e)
         {
-            cart = new Dictionary<Album, int>();
+            cart = new Dictionary<Album, int>(); // Empty the cart.
         }
     }
 }
